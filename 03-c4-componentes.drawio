@@ -1,0 +1,227 @@
+<mxfile host="app.diagrams.net">
+  <diagram id="c4comp" name="C4 - Componentes">
+    <mxGraphModel dx="982" dy="501" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=18;" value="&lt;b&gt;C4 Nivel 3 - Diagrama de Componentes&lt;/b&gt;" vertex="1">
+          <mxGeometry height="50" width="900" x="40" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="idp" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#438DD5;fontColor=#ffffff;strokeColor=#3C7FC0;fontSize=11;" value="&lt;b&gt;Proveedor de identidad&lt;/b&gt;&lt;br&gt;[Keycloak]&lt;br&gt;Publica claves JWKS" vertex="1">
+          <mxGeometry height="90" width="200" x="40" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="gw" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#438DD5;fontColor=#ffffff;strokeColor=#3C7FC0;fontSize=11;" value="&lt;b&gt;API Gateway&lt;/b&gt;&lt;br&gt;[Amazon API Gateway + WAF]&lt;br&gt;Enruta y limita trafico" vertex="1">
+          <mxGeometry height="90" width="200" x="40" y="450" as="geometry" />
+        </mxCell>
+        <mxCell id="b1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#444444;dashed=1;dashPattern=8 4;verticalAlign=top;align=left;spacingLeft=10;fontSize=13;" value="&lt;b&gt;Servicio Transferencias&lt;/b&gt; [Spring Boot en Amazon EKS]" vertex="1">
+          <mxGeometry height="520" width="840" x="300" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="t_jwt" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#85BBF0;fontColor=#000000;strokeColor=#5D9DD5;fontSize=11;" value="&lt;b&gt;SecurityFilter&lt;/b&gt;&lt;br&gt;[Spring Security]&lt;br&gt;Valida JWT, scopes y firma. Rate limit por cliente" vertex="1">
+          <mxGeometry height="90" width="220" x="330" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="t_ctrl" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#85BBF0;fontColor=#000000;strokeColor=#5D9DD5;fontSize=11;" value="&lt;b&gt;TransferController&lt;/b&gt;&lt;br&gt;[Spring MVC - REST]&lt;br&gt;POST /transfers, GET /transfers/{id}. Header Idempotency-Key" vertex="1">
+          <mxGeometry height="90" width="220" x="330" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="t_idem" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#85BBF0;fontColor=#000000;strokeColor=#5D9DD5;fontSize=11;" value="&lt;b&gt;IdempotencyService&lt;/b&gt;&lt;br&gt;[Aplicacion]&lt;br&gt;Evita doble debito ante reintentos del cliente" vertex="1">
+          <mxGeometry height="90" width="220" x="330" y="410" as="geometry" />
+        </mxCell>
+        <mxCell id="t_uc" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#85BBF0;fontColor=#000000;strokeColor=#5D9DD5;fontSize=11;" value="&lt;b&gt;TransferUseCase&lt;/b&gt;&lt;br&gt;[Capa de aplicacion - puerto de entrada]&lt;br&gt;Valida y coordina el caso de uso" vertex="1">
+          <mxGeometry height="90" width="220" x="610" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="t_saga" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#85BBF0;fontColor=#000000;strokeColor=#5D9DD5;fontSize=11;" value="&lt;b&gt;TransferSagaOrchestrator&lt;/b&gt;&lt;br&gt;[Patron Saga]&lt;br&gt;Debito, credito o envio interbancario y compensacion si falla" vertex="1">
+          <mxGeometry height="90" width="220" x="610" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="t_dom" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#85BBF0;fontColor=#000000;strokeColor=#5D9DD5;fontSize=11;" value="&lt;b&gt;Dominio&lt;/b&gt;&lt;br&gt;[DDD]&lt;br&gt;Transfer, Account, LimitPolicy, Money. Sin dependencias de framework" vertex="1">
+          <mxGeometry height="90" width="220" x="610" y="410" as="geometry" />
+        </mxCell>
+        <mxCell id="t_core" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#85BBF0;fontColor=#000000;strokeColor=#5D9DD5;fontSize=11;" value="&lt;b&gt;CoreBankingAdapter&lt;/b&gt;&lt;br&gt;[REST client + Resilience4j]&lt;br&gt;Circuit Breaker, Retry con backoff, Bulkhead, timeout" vertex="1">
+          <mxGeometry height="90" width="220" x="890" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="t_inter" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#85BBF0;fontColor=#000000;strokeColor=#5D9DD5;fontSize=11;" value="&lt;b&gt;InterbankAdapter&lt;/b&gt;&lt;br&gt;[REST - mTLS]&lt;br&gt;Envio a red interbancaria con firma y reintentos" vertex="1">
+          <mxGeometry height="90" width="220" x="890" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="t_repo" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#85BBF0;fontColor=#000000;strokeColor=#5D9DD5;fontSize=11;" value="&lt;b&gt;TransferRepository&lt;/b&gt;&lt;br&gt;[Spring Data JPA]&lt;br&gt;Persistencia de transferencias y claves de idempotencia" vertex="1">
+          <mxGeometry height="90" width="220" x="890" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="t_out" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#85BBF0;fontColor=#000000;strokeColor=#5D9DD5;fontSize=11;" value="&lt;b&gt;OutboxPublisher&lt;/b&gt;&lt;br&gt;[Transactional Outbox]&lt;br&gt;Publica eventos de dominio a SNS sin perder mensajes" vertex="1">
+          <mxGeometry height="90" width="220" x="890" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="x_core" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#999999;fontColor=#ffffff;strokeColor=#6B6B6B;fontSize=11;" value="&lt;b&gt;Plataforma Core&lt;/b&gt;&lt;br&gt;[Sistema existente]" vertex="1">
+          <mxGeometry height="80" width="200" x="1260" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="x_inter" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#999999;fontColor=#ffffff;strokeColor=#6B6B6B;fontSize=11;" value="&lt;b&gt;Red interbancaria&lt;/b&gt;&lt;br&gt;[Sistema externo]" vertex="1">
+          <mxGeometry height="80" width="200" x="1260" y="225" as="geometry" />
+        </mxCell>
+        <mxCell id="x_db" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=10;fillColor=#438DD5;fontColor=#ffffff;strokeColor=#3C7FC0;fontSize=11;" value="&lt;b&gt;BD transaccional&lt;/b&gt;&lt;br&gt;[Aurora PostgreSQL]" vertex="1">
+          <mxGeometry height="90" width="200" x="1260" y="335" as="geometry" />
+        </mxCell>
+        <mxCell id="x_bus" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E7157B;fontColor=#ffffff;strokeColor=#B0105F;fontSize=11;" value="&lt;b&gt;Bus de eventos&lt;/b&gt;&lt;br&gt;[Amazon SNS + SQS]" vertex="1">
+          <mxGeometry height="80" width="200" x="1260" y="450" as="geometry" />
+        </mxCell>
+        <mxCell id="a1" edge="1" parent="1" source="t_jwt" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;strokeColor=#707070;fontSize=10;" target="idp" value="Descarga claves&lt;br&gt;[JWKS]">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a2" edge="1" parent="1" source="gw" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;strokeColor=#707070;fontSize=10;" target="t_jwt" value="[HTTPS / mTLS]">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="270" y="495" />
+              <mxPoint x="270" y="165" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a3" edge="1" parent="1" source="t_jwt" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;strokeColor=#707070;" target="t_ctrl" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a4" edge="1" parent="1" source="t_ctrl" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;strokeColor=#707070;fontSize=10;" target="t_idem" value="Verifica clave">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a5" edge="1" parent="1" source="t_ctrl" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;strokeColor=#707070;fontSize=10;" target="t_uc" value="Invoca">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="580" y="305" />
+              <mxPoint x="580" y="165" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a6" edge="1" parent="1" source="t_uc" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;strokeColor=#707070;fontSize=10;" target="t_saga" value="Inicia saga">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a7" edge="1" parent="1" source="t_saga" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;strokeColor=#707070;fontSize=10;" target="t_dom" value="Aplica reglas">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a8" edge="1" parent="1" source="t_saga" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;strokeColor=#707070;fontSize=10;" target="t_core" value="Puerto de salida">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="860" y="305" />
+              <mxPoint x="860" y="155" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a9" edge="1" parent="1" source="t_saga" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;strokeColor=#707070;" target="t_inter" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="860" y="305" />
+              <mxPoint x="860" y="265" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a10" edge="1" parent="1" source="t_saga" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;strokeColor=#707070;" target="t_repo" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="860" y="305" />
+              <mxPoint x="860" y="375" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a11" edge="1" parent="1" source="t_saga" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;strokeColor=#707070;" target="t_out" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="860" y="305" />
+              <mxPoint x="860" y="485" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a12" edge="1" parent="1" source="t_core" style="endArrow=block;html=1;strokeColor=#707070;fontSize=10;" target="x_core" value="Debito / credito [REST]">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a13" edge="1" parent="1" source="t_inter" style="endArrow=block;html=1;strokeColor=#707070;fontSize=10;" target="x_inter" value="[HTTPS / mTLS]">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a14" edge="1" parent="1" source="t_repo" style="endArrow=block;html=1;strokeColor=#707070;fontSize=10;" target="x_db" value="[JDBC / TLS]">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a15" edge="1" parent="1" source="t_out" style="endArrow=block;html=1;strokeColor=#B0105F;fontSize=10;" target="x_bus" value="Publish [HTTPS]">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="b2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#444444;dashed=1;dashPattern=8 4;verticalAlign=top;align=left;spacingLeft=10;fontSize=13;" value="&lt;b&gt;Servicio Movimientos&lt;/b&gt; [Spring Boot en Amazon EKS]" vertex="1">
+          <mxGeometry height="400" width="840" x="300" y="650" as="geometry" />
+        </mxCell>
+        <mxCell id="m_ctrl" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#85BBF0;fontColor=#000000;strokeColor=#5D9DD5;fontSize=11;" value="&lt;b&gt;MovementsController&lt;/b&gt;&lt;br&gt;[Spring MVC - REST]&lt;br&gt;GET /accounts/{id}/movements con paginacion por cursor" vertex="1">
+          <mxGeometry height="90" width="220" x="330" y="700" as="geometry" />
+        </mxCell>
+        <mxCell id="m_uc" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#85BBF0;fontColor=#000000;strokeColor=#5D9DD5;fontSize=11;" value="&lt;b&gt;QueryMovementsUseCase&lt;/b&gt;&lt;br&gt;[Capa de aplicacion - CQRS lectura]&lt;br&gt;Arma la respuesta con datos del Core y complementarios" vertex="1">
+          <mxGeometry height="90" width="220" x="610" y="700" as="geometry" />
+        </mxCell>
+        <mxCell id="m_cache" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#85BBF0;fontColor=#000000;strokeColor=#5D9DD5;fontSize=11;" value="&lt;b&gt;CacheAsideRepository&lt;/b&gt;&lt;br&gt;[Spring Cache]&lt;br&gt;Consulta cache, si falla carga del origen y guarda con TTL" vertex="1">
+          <mxGeometry height="90" width="220" x="610" y="860" as="geometry" />
+        </mxCell>
+        <mxCell id="m_warm" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#85BBF0;fontColor=#000000;strokeColor=#5D9DD5;fontSize=11;" value="&lt;b&gt;CacheWarmer&lt;/b&gt;&lt;br&gt;[Consumidor SQS]&lt;br&gt;Pre-calienta datos de clientes frecuentes y invalida por eventos" vertex="1">
+          <mxGeometry height="90" width="220" x="330" y="860" as="geometry" />
+        </mxCell>
+        <mxCell id="m_core" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#85BBF0;fontColor=#000000;strokeColor=#5D9DD5;fontSize=11;" value="&lt;b&gt;CoreMovementsAdapter&lt;/b&gt;&lt;br&gt;[REST + Resilience4j]&lt;br&gt;Circuit Breaker y timeout" vertex="1">
+          <mxGeometry height="80" width="220" x="890" y="690" as="geometry" />
+        </mxCell>
+        <mxCell id="m_comp" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#85BBF0;fontColor=#000000;strokeColor=#5D9DD5;fontSize=11;" value="&lt;b&gt;ComplementaryDataAdapter&lt;/b&gt;&lt;br&gt;[REST + fallback]&lt;br&gt;Datos detallados solo cuando se requieren" vertex="1">
+          <mxGeometry height="80" width="220" x="890" y="790" as="geometry" />
+        </mxCell>
+        <mxCell id="m_redis" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#85BBF0;fontColor=#000000;strokeColor=#5D9DD5;fontSize=11;" value="&lt;b&gt;RedisAdapter&lt;/b&gt;&lt;br&gt;[Lettuce - TLS]&lt;br&gt;Acceso a ElastiCache" vertex="1">
+          <mxGeometry height="80" width="220" x="890" y="890" as="geometry" />
+        </mxCell>
+        <mxCell id="y_core" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#999999;fontColor=#ffffff;strokeColor=#6B6B6B;fontSize=11;" value="&lt;b&gt;Plataforma Core&lt;/b&gt;&lt;br&gt;[Sistema existente]" vertex="1">
+          <mxGeometry height="70" width="200" x="1260" y="695" as="geometry" />
+        </mxCell>
+        <mxCell id="y_comp" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#999999;fontColor=#ffffff;strokeColor=#6B6B6B;fontSize=11;" value="&lt;b&gt;Sistema complementario&lt;/b&gt;&lt;br&gt;[Sistema existente]" vertex="1">
+          <mxGeometry height="70" width="200" x="1260" y="795" as="geometry" />
+        </mxCell>
+        <mxCell id="y_redis" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=10;fillColor=#438DD5;fontColor=#ffffff;strokeColor=#3C7FC0;fontSize=11;" value="&lt;b&gt;Cache&lt;/b&gt;&lt;br&gt;[ElastiCache Redis]" vertex="1">
+          <mxGeometry height="80" width="200" x="1260" y="890" as="geometry" />
+        </mxCell>
+        <mxCell id="y_bus" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E7157B;fontColor=#ffffff;strokeColor=#B0105F;fontSize=11;" value="&lt;b&gt;Cola de eventos&lt;/b&gt;&lt;br&gt;[Amazon SQS]" vertex="1">
+          <mxGeometry height="50" width="200" x="1260" y="985" as="geometry" />
+        </mxCell>
+        <mxCell id="c1" edge="1" parent="1" source="gw" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;strokeColor=#707070;fontSize=10;" target="m_ctrl" value="[HTTPS / mTLS]">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="270" y="495" />
+              <mxPoint x="270" y="745" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c2" edge="1" parent="1" source="m_ctrl" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;strokeColor=#707070;fontSize=10;" target="m_uc" value="Invoca">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c3" edge="1" parent="1" source="m_uc" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;strokeColor=#707070;fontSize=10;" target="m_cache" value="1. Lee cache">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c4" edge="1" parent="1" source="m_uc" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;strokeColor=#707070;fontSize=10;" target="m_core" value="2. Si hay fallo (miss)">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="860" y="745" />
+              <mxPoint x="860" y="730" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c5" edge="1" parent="1" source="m_uc" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;strokeColor=#707070;" target="m_comp" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="860" y="745" />
+              <mxPoint x="860" y="830" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c6" edge="1" parent="1" source="m_cache" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;strokeColor=#707070;fontSize=10;" target="m_redis" value="Get / Put">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c7" edge="1" parent="1" source="m_warm" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;strokeColor=#707070;fontSize=10;" target="m_cache" value="Invalida / precarga">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c8" edge="1" parent="1" source="m_core" style="endArrow=block;html=1;strokeColor=#707070;fontSize=10;" target="y_core" value="[REST]">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c9" edge="1" parent="1" source="m_comp" style="endArrow=block;html=1;strokeColor=#707070;fontSize=10;" target="y_comp" value="[REST]">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c10" edge="1" parent="1" source="m_redis" style="endArrow=block;html=1;strokeColor=#707070;fontSize=10;" target="y_redis" value="[RESP / TLS]">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c11" edge="1" parent="1" source="m_warm" style="edgeStyle=orthogonalEdgeStyle;endArrow=none;startArrow=block;html=1;strokeColor=#B0105F;fontSize=10;" target="y_bus" value="Consume">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="440" y="1010" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

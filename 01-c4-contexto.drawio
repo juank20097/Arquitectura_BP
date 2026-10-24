@@ -1,0 +1,106 @@
+<mxfile host="app.diagrams.net">
+  <diagram id="c4ctx" name="C4 - Contexto">
+    <mxGraphModel dx="1885" dy="961" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=18;" value="&lt;b&gt;C4 Nivel 1 - Diagrama de Contexto&lt;/b&gt;" vertex="1">
+          <mxGeometry height="50" width="600" x="40" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="p1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#08427B;fontColor=#ffffff;strokeColor=#073B6F;fontSize=12;" value="&lt;b&gt;Cliente BP&lt;/b&gt;&lt;br&gt;[Persona]&lt;br&gt;&lt;br&gt;Consulta movimientos, realiza transferencias y pagos desde web o movil" vertex="1">
+          <mxGeometry height="120" width="240" x="70" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="p2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#08427B;fontColor=#ffffff;strokeColor=#073B6F;fontSize=12;" value="&lt;b&gt;Nuevo cliente&lt;/b&gt;&lt;br&gt;[Persona]&lt;br&gt;&lt;br&gt;Se registra desde la app movil con validacion facial y de documento" vertex="1">
+          <mxGeometry height="120" width="240" x="70" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="p3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#08427B;fontColor=#ffffff;strokeColor=#073B6F;fontSize=12;" value="&lt;b&gt;Auditor / Oficial de seguridad&lt;/b&gt;&lt;br&gt;[Persona]&lt;br&gt;&lt;br&gt;Revisa la bitacora de acciones y evidencias de cumplimiento" vertex="1">
+          <mxGeometry height="120" width="240" x="70" y="550" as="geometry" />
+        </mxCell>
+        <mxCell id="sys" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1168BD;fontColor=#ffffff;strokeColor=#0B4884;fontSize=13;" value="&lt;b&gt;Banca por Internet BP&lt;/b&gt;&lt;br&gt;[Sistema de software]&lt;br&gt;&lt;br&gt;Permite consultar historico de movimientos, transferir y pagar entre cuentas propias e interbancarias, con notificacion de cada operacion y auditoria completa" vertex="1">
+          <mxGeometry height="180" width="300" x="540" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="idp" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1168BD;fontColor=#ffffff;strokeColor=#0B4884;fontSize=12;" value="&lt;b&gt;Proveedor de identidad&lt;/b&gt;&lt;br&gt;[Sistema interno BP - OAuth 2.0 / OIDC]&lt;br&gt;&lt;br&gt;Autentica usuarios y emite tokens. Gestiona MFA y biometria local" vertex="1">
+          <mxGeometry height="110" width="300" x="540" y="620" as="geometry" />
+        </mxCell>
+        <mxCell id="core" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#999999;fontColor=#ffffff;strokeColor=#6B6B6B;fontSize=12;" value="&lt;b&gt;Plataforma Core bancaria&lt;/b&gt;&lt;br&gt;[Sistema existente]&lt;br&gt;&lt;br&gt;Datos basicos de cliente, productos, cuentas y movimientos" vertex="1">
+          <mxGeometry height="110" width="280" x="1250" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="comp" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#999999;fontColor=#ffffff;strokeColor=#6B6B6B;fontSize=12;" value="&lt;b&gt;Sistema complementario de cliente&lt;/b&gt;&lt;br&gt;[Sistema existente]&lt;br&gt;&lt;br&gt;Informacion detallada del cliente cuando se requiere" vertex="1">
+          <mxGeometry height="110" width="280" x="1250" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="inter" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#999999;fontColor=#ffffff;strokeColor=#6B6B6B;fontSize=12;" value="&lt;b&gt;Red interbancaria&lt;/b&gt;&lt;br&gt;[Sistema externo]&lt;br&gt;&lt;br&gt;Compensacion y liquidacion de transferencias hacia otros bancos" vertex="1">
+          <mxGeometry height="110" width="280" x="1250" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="mail" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#999999;fontColor=#ffffff;strokeColor=#6B6B6B;fontSize=12;" value="&lt;b&gt;Servicio de correo&lt;/b&gt;&lt;br&gt;[Sistema externo - Amazon SES]&lt;br&gt;&lt;br&gt;Envia notificaciones de movimientos por correo electronico" vertex="1">
+          <mxGeometry height="110" width="280" x="1250" y="560" as="geometry" />
+        </mxCell>
+        <mxCell id="sms" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#999999;fontColor=#ffffff;strokeColor=#6B6B6B;fontSize=12;" value="&lt;b&gt;Proveedor SMS / Push&lt;/b&gt;&lt;br&gt;[Sistema externo - Amazon SNS]&lt;br&gt;&lt;br&gt;Envia notificaciones por SMS y notificacion push al movil" vertex="1">
+          <mxGeometry height="110" width="280" x="1250" y="700" as="geometry" />
+        </mxCell>
+        <mxCell id="face" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#999999;fontColor=#ffffff;strokeColor=#6B6B6B;fontSize=12;" value="&lt;b&gt;Servicio de reconocimiento facial&lt;/b&gt;&lt;br&gt;[Sistema externo - Amazon Rekognition]&lt;br&gt;&lt;br&gt;Deteccion y comparacion rostro contra documento" vertex="1">
+          <mxGeometry height="110" width="300" x="540" y="820" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="p1" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;strokeColor=#707070;fontSize=11;" target="sys" value="Consulta y opera&lt;br&gt;[HTTPS]">
+          <mxGeometry relative="1" x="-0.2453" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="p2" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;strokeColor=#707070;fontSize=11;" target="sys" value="Se registra con rostro y documento&lt;br&gt;[HTTPS]">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="p3" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;strokeColor=#707070;fontSize=11;" target="sys" value="Consulta bitacora&lt;br&gt;[HTTPS - solo lectura]">
+          <mxGeometry relative="1" x="-0.6001" as="geometry">
+            <mxPoint x="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="sys" style="endArrow=block;startArrow=block;html=1;strokeColor=#707070;fontSize=11;" target="idp" value="Valida tokens y delega login&lt;br&gt;[OAuth 2.0 / OIDC]">
+          <mxGeometry relative="1" x="0.1429" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="sys" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;strokeColor=#707070;fontSize=11;" target="core" value="Lee datos basicos, productos y movimientos&lt;br&gt;[HTTPS / REST]">
+          <mxGeometry relative="1" x="0.5414" y="5" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="940.07" y="390.07" />
+              <mxPoint x="940.07" y="200.07" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" source="sys" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;strokeColor=#707070;fontSize=11;" target="comp" value="Obtiene datos detallados&lt;br&gt;[HTTPS / REST]">
+          <mxGeometry relative="1" x="0.2929" y="10" as="geometry">
+            <mxPoint y="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e7" edge="1" parent="1" source="sys" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;strokeColor=#707070;fontSize=11;" target="inter" value="Envia transferencias interbancarias&lt;br&gt;[HTTPS / mTLS]">
+          <mxGeometry relative="1" x="0.3206" y="-5" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e8" edge="1" parent="1" source="sys" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;strokeColor=#707070;fontSize=11;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="mail" value="Envia notificaciones de movimientos&lt;br&gt;[SMTP / API]">
+          <mxGeometry relative="1" x="0.3469" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="1010.07" y="390.07" />
+              <mxPoint x="1010.07" y="615" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e9" edge="1" parent="1" source="sys" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;strokeColor=#707070;fontSize=11;" target="sms" value="Envia SMS y push&lt;br&gt;[API]">
+          <mxGeometry relative="1" x="0.3933" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="940.07" y="390.07" />
+              <mxPoint x="940.07" y="755" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e10" edge="1" parent="1" source="sys" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;strokeColor=#707070;fontSize=11;" target="face" value="Verifica&lt;span style=&quot;background-color: light-dark(#ffffff, var(--ge-dark-color, #121212)); color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;nbsp;y compara rostro&lt;/span&gt;&lt;div&gt;[HTTPS / SDK]&lt;/div&gt;">
+          <mxGeometry relative="1" x="0.7647" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
